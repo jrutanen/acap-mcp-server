@@ -1,3 +1,8 @@
 app/html*
 app/lib*
 app/web_server_rev_proxy*
+app/package*
+app/mcpserver
+app/ACAP_MCP_*
+param.conf
+.DS_Store
