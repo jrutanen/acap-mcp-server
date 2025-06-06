@@ -1,0 +1,21 @@
+{
+    "name": "ACAP Native (aarch64)",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "ARCH": "aarch64"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.makefile-tools",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+        "mounts": [
+        "source=/Users/janir/Dev/DockerExternalData/mcp-test,target=/mnt/data,type=bind"
+    ]
+}

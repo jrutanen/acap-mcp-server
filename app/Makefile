@@ -1,8 +1,7 @@
-PROG1	= mcp_server
+PROG1	= mcpserver
 OBJS1	= $(PROG1).c
 PROGS	= $(PROG1)
 MONKEY_DIR = /opt/build/monkey/build
-APP_DIR = /usr/local/packages/$(PROG1)
 LIBDIR = lib
 HTMLDIR = html
 
@@ -12,6 +11,7 @@ LDLIBS += $(shell PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) pkg-config --libs $(PKGS))
 
 CFLAGS += -I$(MONKEY_DIR)/include
 LDFLAGS += -L./$(LIBDIR) -Wl,-rpath,'$$ORIGIN/$(LIBDIR)'
+LDFLAGS += -L./$(LIBDIR) -Wl,-rpath,'$$ORIGIN/lib/plugins'
 
 CFLAGS += -Wall \
           -Wextra \
