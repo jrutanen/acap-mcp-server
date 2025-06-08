@@ -40,35 +40,22 @@ RUN git apply --ignore-space-change --ignore-whitespace monkey.patch && \
     . /opt/axis/acapsdk/environment-setup* && \
     ./configure \
     --enable-shared \
+    --enable-plugins=fastcgi,liana \
     --malloc-libc \
     --prefix=${SDK_LIB_PATH_BASE} \
     --libdir=${SDK_LIB_PATH_BASE}/lib \
-    --bindir=${MONKEY_BUILD_DIR}/bin \
-    --incdir=${MONKEY_BUILD_DIR}/include \
-    --plugdir=$/lib/plugins \
     --plugdir=${APP_RPATH}/lib/plugins \
-    --datadir=${APP_RPATH}/html \
     --sysconfdir=${APP_RPATH}/html \
-    --logdir=${APP_RPATH}/localhost/logs \
-    --mandir=${MONKEY_BUILD_DIR}/man \
-    --pidfile=/tmp/monkey.pid \
-    --systemddir=/usr/lib/systemd/system && \
+    --logdir=${APP_RPATH}/logs \
+    --pidfile=/tmp/monkey.pid && \
     make && \
     make install
-
-# Gather files in Monkey build directory to make it easy for the application
-# Makefile to copy required files to the ACAP application build directory
-WORKDIR ${MONKEY_BUILD_DIR}/html
-ARG MONKEY_HTML_FILES="monkey.mime monkey.conf  sites plugins.load"
-RUN for htmlfile in $MONKEY_HTML_FILES; do \
-      cp -r "$APP_RPATH/html/$htmlfile" . ; \
-    done
 
 WORKDIR ${MONKEY_BUILD_DIR}/lib
 RUN cp -P ${SDK_LIB_PATH_BASE}/lib/libmonkey* .
 
 WORKDIR ${MONKEY_BUILD_DIR}/lib/plugins
-ARG MONKEY_PLUGINS="monkey-liana"
+ARG MONKEY_PLUGINS="monkey-liana monkey-fastcgi"
 RUN for plug in $MONKEY_PLUGINS; do \
       cp "$APP_RPATH/lib/plugins/$plug.so" . ; \
     done

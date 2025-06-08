@@ -1,0 +1,42 @@
+# Monkey Plugins Loader
+# =====================
+# Monkey plugins are extended functionalities for Monkey,
+# the main directive to load a plugin is LoadPlugin plus
+# the absolute path for the desired plugin.
+#
+# Please check the following list of available plugins:
+
+[PLUGINS]
+
+    # HTTP Basic Authentication
+    # =========================
+    #
+    # Load /lib/plugins/monkey-auth.so
+
+    # FASTCGI
+    # =======
+    # Adds FastCGI proxy support.
+    #
+    Load /usr/local/packages/mcpserver/lib/plugins/monkey-fastcgi.so
+
+    # Liana Plugin
+    # ============
+    # Liana gives network layer to Monkey so you can build your own 
+    # network layer for Monkey.
+    #
+    Load /usr/local/packages/mcpserver/lib/plugins/monkey-liana.so
+
+    # Logger Plugin
+    # ===============
+    # This plugin register request entries in log files as well common
+    # errors raised.
+    #
+    # Load /usr/local/packages/mcpserver/lib/plugins/monkey-logger.so
+
+    # Mandril Security Plugin
+    # =======================
+    # Provides a security layer to restrict incoming connections
+    # using as pattern the IP address or a specific URI request.
+    #
+    # Load /usr/local/packages/mcpserver/lib/plugins/monkey-mandril.so
+

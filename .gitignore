@@ -6,3 +6,4 @@ app/mcpserver
 app/ACAP_MCP_*
 param.conf
 .DS_Store
+app/tmp*
